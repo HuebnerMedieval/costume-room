@@ -14,9 +14,12 @@
     <% if user_signed_in? %>
       <%= button_to 'logout', destroy_user_session_path, method: :delete %>
     <% else %>
-      <p><%= button_to 'Sign Up', signup_path, method: :get %> or <%= button_to 'Log In', login_path, method: :get  %></p>
+      <p><%= button_to 'Sign Up', signup_path, method: :get %></p>
+      <p><%= button_to 'Log In', login_path, method: :get  %></p>
     <% end%>
     </nav>
+
+    <%= render 'layouts/nav'%>
 
     <%= yield %>
   </body>

@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_154646) do
+ActiveRecord::Schema.define(version: 2020_12_02_140506) do
+
+  create_table "actors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "costumes", force: :cascade do |t|
+    t.string "role"
+    t.string "description"
+    t.boolean "finished", default: false
+    t.boolean "authentic"
+    t.integer "user_id"
+    t.integer "actor_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :costumes
+  resources :actors
   devise_for :users, :controllers => {registrations: "registrations", omniauth_callbacks: "callbacks"}
     #change route from /users/login to /login route
     devise_scope :user do
