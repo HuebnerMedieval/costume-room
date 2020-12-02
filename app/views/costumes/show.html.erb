@@ -1,0 +1,19 @@
+<h1><%= @costume.role %></h1>
+
+    <h3>Actor: <%= @costume.actor.name %> </h3>
+
+    <% if @costume.finished%>
+        <h3>Construction Completed</h3>
+    <% else%>
+        <h3>Work in Progress</h3>
+    <% end%>
+
+    <% if @costume.authentic%>
+        <h3>Historically Authentic Style</h3>
+    <% else%>
+        <h3>Fantasy Style</h3>
+    <% end%>
+
+    <h3>Description</h3>
+        <p><%= @costume.description %></p>
+    

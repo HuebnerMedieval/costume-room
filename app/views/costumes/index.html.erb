@@ -1,0 +1,9 @@
+<h1><%= current_user.name %>'s Costumes</h1>
+
+<ul>
+    <li><%= link_to "Add a Costume", new_costume_path %></li>
+    
+    <% @costumes.each do |costume|%>
+        <li><%= link_to costume.role, costume_path(costume) %></li>
+    <% end%>
+</ul>
