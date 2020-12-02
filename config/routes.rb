@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :costumes
 
-  resources :actors, only: [:new, :show, :index]
+  resources :actors, only: [:show, :index]
   # new and create are nested
 
   devise_for :users, :controllers => {registrations: "registrations", omniauth_callbacks: "callbacks"}
