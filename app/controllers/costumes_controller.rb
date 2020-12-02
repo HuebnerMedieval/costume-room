@@ -29,7 +29,12 @@ class CostumesController < ApplicationController
     end
 
     def create
-        #to fill out
+        costume = current_user.costumes.build(costume_params)
+        if costume.save
+            redirect_to costume_path(costume)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -45,10 +50,28 @@ class CostumesController < ApplicationController
     end
 
     def update
-        #to fill out
+        costume = current_user.costumes.find_by(id: params[:id])
+        if costume.update(costume_params)
+            redirect_to costume_path(costume)
+        else
+            render :edit
+        end
     end
 
     def destroy
         #to fill out
+        costume = current_user.costumes.find_by(id: params[:id])
+        if costume
+            costume.destroy
+            redirect_to costumes_path
+        else
+            redirect_to costumes_path
+        end
+    end
+
+    private
+
+    def costume_params
+        params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, :actor_id)
     end
 end
