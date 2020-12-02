@@ -1,19 +1,31 @@
 class CostumesController < ApplicationController
 
     def index
-        @costumes = current_user.costumes
+        if user_logged_in?
+            @costumes = current_user.costumes
+        else
+            redirect_to root_path
+        end
     end
 
     def show
-        if current_user.costumes.find_by(id: params[:id])
-            @costume = current_user.costumes.find_by(id: params[:id])
+        if user_logged_in?
+            if current_user.costumes.find_by(id: params[:id])
+                @costume = current_user.costumes.find_by(id: params[:id])
+            else
+                redirect_to costumes_path
+            end
         else
-            redirect_to costumes_path
+            redirect_to root_path
         end
     end
 
     def new
-        @costume = Costume.new
+        if user_logged_in?
+            @costume = Costume.new
+        else
+            redirect_to root_path
+        end
     end
 
     def create
@@ -21,10 +33,14 @@ class CostumesController < ApplicationController
     end
 
     def edit
-        if current_user.costumes.find_by(id: params[:id])
-            @costume = current_user.costumes.find_by(id: params[:id])
+        if user_logged_in?
+            if current_user.costumes.find_by(id: params[:id])
+                @costume = current_user.costumes.find_by(id: params[:id])
+            else
+                redirect_to costumes_path
+            end
         else
-            redirect_to costumes_path
+            redirect_to root_path
         end
     end
 
