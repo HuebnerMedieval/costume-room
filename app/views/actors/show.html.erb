@@ -5,6 +5,6 @@
 <ul>
     <li>nested new costume route</li>
     <% @actor.costumes.each do |costume|%>
-        <li><%= link_to costume.role, costume_path %></li>
+        <li><%= link_to costume.role, costume_path(costume) %></li>
     <% end %>
 </ul>
