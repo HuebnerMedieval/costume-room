@@ -1,0 +1,10 @@
+<h1><%= @actor.name %></h1>
+
+<h3>Costumes</h3>
+
+<ul>
+    <li>nested new costume route</li>
+    <% @actor.costumes.each do |costume|%>
+        <li><%= link_to costume.role, costume_path %></li>
+    <% end %>
+</ul>
