@@ -1,0 +1,22 @@
+<%= form_for @costume do |f| %>
+    <%= f.label :role %>
+    <%= f.text_field :role %>
+
+    <%=f.label :description %>
+    <%= f.text_area :description %>
+
+    <%= f.label :finished_WIP, 'Work in Progress' %>
+    <%= f.radio_button :finished, false %>
+    
+    <%= f.label :finished_done, 'Costume Complete' %>
+    <%= f.radio_button :finished, true %>
+
+    <%= f.label :authentic_true, 'Historical style' %>
+    <%= f.radio_button :authentic, true %>
+
+    <%= f.label :authentic_false, 'Fantasy Style' %>
+    <%= f.radio_button :authentic, false %>
+
+    <% f.label :authentic %>
+    <% f.%>
+<% end %>
