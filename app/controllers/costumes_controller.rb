@@ -1,7 +1,7 @@
 class CostumesController < ApplicationController
 
     def index
-        if user_logged_in?
+        if user_signed_in?
             @costumes = current_user.costumes
         else
             redirect_to root_path
@@ -9,7 +9,7 @@ class CostumesController < ApplicationController
     end
 
     def show
-        if user_logged_in?
+        if user_signed_in?
             if current_user.costumes.find_by(id: params[:id])
                 @costume = current_user.costumes.find_by(id: params[:id])
             else
@@ -21,7 +21,7 @@ class CostumesController < ApplicationController
     end
 
     def new
-        if user_logged_in?
+        if user_signed_in?
             @costume = Costume.new
         else
             redirect_to root_path
@@ -33,7 +33,7 @@ class CostumesController < ApplicationController
     end
 
     def edit
-        if user_logged_in?
+        if user_signed_in?
             if current_user.costumes.find_by(id: params[:id])
                 @costume = current_user.costumes.find_by(id: params[:id])
             else

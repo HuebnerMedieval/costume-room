@@ -1,14 +1,22 @@
 class ActorsController < ApplicationController
 
     def show
-        if current_user.actors.find_by(id: params[:id])
-            @actor = current_user.actors.find_by(id: params[:id])
+        if user_signed_in?
+            if current_user.actors.find_by(id: params[:id])
+                @actor = current_user.actors.find_by(id: params[:id])
+            else
+                redirect_to actors_path
+            end
         else
-            redirect_to actors_path
+            redirect_to root_path
         end
     end
 
     def index
-        @actors = current_user.actors
+        if user_signed_in?
+            @actors = current_user.actors
+        else
+            redirect_to root_path
+        end
     end
 end
