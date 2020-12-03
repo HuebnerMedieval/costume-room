@@ -23,6 +23,7 @@ class CostumesController < ApplicationController
     def new
         if user_signed_in?
             @costume = Costume.new
+            @actors = Actor.all
         else
             redirect_to root_path
         end
@@ -59,7 +60,6 @@ class CostumesController < ApplicationController
     end
 
     def destroy
-        #to fill out
         costume = current_user.costumes.find_by(id: params[:id])
         if costume
             costume.destroy
@@ -72,6 +72,6 @@ class CostumesController < ApplicationController
     private
 
     def costume_params
-        params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, :actor_id)
+        params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, actor_id:[], actors_attributes: [:name])
     end
 end

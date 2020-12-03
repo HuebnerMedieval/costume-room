@@ -17,6 +17,13 @@
     <%= f.label :authentic_false, 'Fantasy Style' %>
     <%= f.radio_button :authentic, false %>
 
-    <% f.label :authentic %>
-    <% f.%>
+    <%= f.label :actor %>
+    <%= f.collection_select, :actor_id, @actors, :id, :name %>
+
+    <%= f.fields_for :actors, costume.actors.build do |actor_fields| %>
+        <%= actor_fields.text_field :name %>
+    <%= end %>
+
+    <% f.submit %>
+
 <% end %>
