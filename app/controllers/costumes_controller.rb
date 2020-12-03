@@ -24,6 +24,7 @@ class CostumesController < ApplicationController
         if user_signed_in?
             @costume = Costume.new
             @actors = Actor.all
+            @costume.build_actor
         else
             redirect_to root_path
         end
@@ -72,6 +73,6 @@ class CostumesController < ApplicationController
     private
 
     def costume_params
-        params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, actor_id:[], actors_attributes: [:name])
+        params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, :actor_id, actor_attributes: [:name])
     end
 end

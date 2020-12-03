@@ -6,6 +6,9 @@
             <li><%= link_to 'Login', new_user_session_path %></li>
         <% else%>
             <li>Signed in as <%= current_user.name %></li>
+            <li><%= link_to 'New Costume', new_costume_path %></li>
+            <li><%= link_to 'My Costumes', costumes_path %></li>
+            <li><%= link_to 'My Actors', actors_path %></li>
             <li><%= button_to 'Logout', destroy_user_session_path, method: "delete" %></li>
         <% end%>
     </ul>

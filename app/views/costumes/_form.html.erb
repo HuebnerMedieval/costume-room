@@ -1,29 +1,30 @@
 <%= form_for @costume do |f| %>
     <%= f.label :role %>
-    <%= f.text_field :role %>
+    <%= f.text_field :role %> <br>
 
     <%=f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description %> <br>
 
     <%= f.label :finished_WIP, 'Work in Progress' %>
-    <%= f.radio_button :finished, false %>
+    <%= f.radio_button :finished, false %> <br>
     
     <%= f.label :finished_done, 'Costume Complete' %>
-    <%= f.radio_button :finished, true %>
+    <%= f.radio_button :finished, true %> <br>
 
     <%= f.label :authentic_true, 'Historical style' %>
-    <%= f.radio_button :authentic, true %>
+    <%= f.radio_button :authentic, true %> <br>
 
     <%= f.label :authentic_false, 'Fantasy Style' %>
-    <%= f.radio_button :authentic, false %>
+    <%= f.radio_button :authentic, false %> <br>
 
-    <%= f.label :actor %>
-    <%= f.collection_select, :actor_id, @actors, :id, :name %>
+    <%= f.label :actor_id, 'Actor' %>
+    <%= f.collection_select :actor_id, @actors, :id, :name %> <br>
 
-    <%= f.fields_for :actors, costume.actors.build do |actor_fields| %>
-        <%= actor_fields.text_field :name %>
-    <%= end %>
+    <%= f.fields_for :actor do |actor_fields| %>
+        <%=actor_fields.label :name%>
+        <%= actor_fields.text_field :name %> <br>
+    <% end %>
 
-    <% f.submit %>
+    <%= f.submit %>
 
 <% end %>
