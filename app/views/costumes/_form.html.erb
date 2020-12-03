@@ -1,8 +1,18 @@
 <%= form_for @costume do |f| %>
-    <%= f.label :role %>
-    <%= f.text_field :role %> <br>
+    
+    <% if !@costume.role%>
 
-    <%=f.label :description %>
+        <%= f.label :role %>
+        <%= f.text_field :role %> <br>
+
+    <% else %>
+
+        <p>Role: <%= @costume.role %></p>
+
+    <% end%>
+    
+
+    <%= f.label :description %> <br>
     <%= f.text_area :description %> <br>
 
     <%= f.label :finished_WIP, 'Work in Progress' %>
@@ -17,13 +27,23 @@
     <%= f.label :authentic_false, 'Fantasy Style' %>
     <%= f.radio_button :authentic, false %> <br>
 
-    <%= f.label :actor_id, 'Actor' %>
-    <%= f.collection_select :actor_id, @actors, :id, :name %> <br>
+    <% if !@costume.role %>
 
-    <%= f.fields_for :actor do |actor_fields| %>
-        <%=actor_fields.label :name%>
-        <%= actor_fields.text_field :name %> <br>
-    <% end %>
+        <%= f.label :actor_id, 'Select an Actor' %>
+        <%= f.collection_select :actor_id, @actors, :id, :name %> <br>
+
+        Or <br>
+
+        <%= f.fields_for :actor do |actor_fields| %>
+            <%=actor_fields.label :name, 'Add an Actor'%>
+            <%= actor_fields.text_field :name %> <br>
+        <% end %>
+
+    <% else%>
+
+        <p>Actor: <%= @costume.actor.name %></p>
+
+    <% end%>
 
     <%= f.submit %>
 

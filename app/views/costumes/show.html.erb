@@ -9,11 +9,13 @@
     <% end%>
 
     <% if @costume.authentic%>
-        <h3>Historically Authentic Style</h3>
+        <h3>Style: Historically Authentic </h3>
     <% else%>
-        <h3>Fantasy Style</h3>
+        <h3>Style: Fantasy</h3>
     <% end%>
 
     <h3>Description</h3>
         <p><%= @costume.description %></p>
     
+    <%= link_to 'Edit', edit_costume_path %>
+    <%= button_to 'Delete', @costume,  method: "delete" %>
