@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :costumes
 
   resources :actors, only: [:show, :index] do
-    resources :costumes, only: [:show, :new]
+    resources :costumes, only: [:show, :new, :edit]
   end
 
   devise_for :users, :controllers => {registrations: "registrations", omniauth_callbacks: "callbacks"}

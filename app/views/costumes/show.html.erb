@@ -17,5 +17,9 @@
     <h3>Description</h3>
         <p><%= @costume.description %></p>
     
-    <%= link_to 'Edit', edit_costume_path %>
+    <% if params[:actor_id] %>
+        <%= link_to 'Edit', edit_actor_costume_path(@costume.actor, @costume) %>
+    <% else %>
+        <%= link_to 'Edit', edit_costume_path(@costume) %>
+    <% end %>
     <%= button_to 'Delete', @costume,  method: "delete" %>
