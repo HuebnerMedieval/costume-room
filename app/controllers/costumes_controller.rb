@@ -2,7 +2,23 @@ class CostumesController < ApplicationController
 
     def index
         if user_signed_in?
-            @costumes = current_user.costumes
+            @user_costumes = current_user.costumes
+
+            if !params[:authenticity].blank?
+                if params[:authenticity] == "Fantasy"
+                    @costumes = @user_costumes.fantasy
+                else
+                    @costumes = @user_costumes.authentic
+                end
+            elsif !params[:status].blank?
+                if params[:status] == "Work in Progress"
+                    @costumes = @user_costumes.wip
+                else
+                    @costumes = @user_costumes.finished
+                end
+            else
+                @costumes = @user_costumes
+            end
         else
             redirect_to root_path
         end

@@ -1,9 +1,15 @@
 <h1><%= current_user.name %>'s Costumes</h1>
 
-<ul>
-    <li><%= link_to "Add a Costume", new_costume_path %></li>
-    
-    <% @costumes.each do |costume|%>
-        <li><%= link_to costume.role, costume_path(costume) %></li>
-    <% end%>
-</ul>
+    <%= form_tag("/costumes", method: "get") do%>
+        Filter by Authenticity: <%= select_tag "authenticity", options_for_select(["Fantasy", "Historic"]), include_blank: true %> <br>
+        OR <br>
+        Filter by Status: <%= select_tag "status", options_for_select(["Work in Progress", "Finished"]), include_blank: true %> <br>
+        <%= submit_tag "Filter" %>
+    <% end %>
+    <ul>
+        <li><%= link_to "Add a Costume", new_costume_path %></li>
+        
+        <% @costumes.each do |costume|%>
+            <li><%= link_to costume.role, costume_path(costume) %></li>
+        <% end%>
+    </ul>
