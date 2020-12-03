@@ -23,14 +23,19 @@ class CostumesController < ApplicationController
     def new
         if user_signed_in?
             @costume = Costume.new
-            @actors = Actor.all
-            @costume.build_actor
+            if params[:actor_id]
+                @costume.actor_id = params[:actor_id]
+            else
+                @actors = Actor.all
+                @costume.build_actor
+            end
         else
             redirect_to root_path
         end
     end
 
     def create
+        # binding.pry
         costume = current_user.costumes.build(costume_params)
         if costume.save
             redirect_to costume_path(costume)

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :costumes
 
-  resources :actors, only: [:show, :index]
-  # new and create are nested
+  resources :actors, only: [:show, :index] do
+    resources :costumes, only: [:show, :new]
+  end
 
   devise_for :users, :controllers => {registrations: "registrations", omniauth_callbacks: "callbacks"}
     #change route from /users/login to /login route
