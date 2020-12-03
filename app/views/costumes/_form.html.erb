@@ -30,7 +30,7 @@
     <% if !@costume.actor_id %>
 
         <%= f.label :actor_id, 'Select an Actor' %>
-        <%= f.collection_select :actor_id, @actors, :id, :name %> <br>
+        <%= f.collection_select :actor_id, @actors, :id, :name, include_blank: true %> <br>
 
         Or <br>
 

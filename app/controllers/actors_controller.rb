@@ -4,6 +4,7 @@ class ActorsController < ApplicationController
         if user_signed_in?
             if current_user.actors.find_by(id: params[:id])
                 @actor = current_user.actors.find_by(id: params[:id])
+                #see about filtering costumes here, rather than in the view (user's only)
             else
                 redirect_to actors_path
             end
