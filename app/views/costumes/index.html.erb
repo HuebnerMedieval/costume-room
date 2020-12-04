@@ -8,8 +8,11 @@
     <% end %>
     <ul>
         <li><%= link_to "Add a Costume", new_costume_path %></li>
-        
+        <br>
         <% @costumes.each do |costume|%>
-            <li><%= link_to costume.role, costume_path(costume) %></li>
+            <li>
+                <%= link_to costume.role, costume_path(costume) %> -  
+                For <%= link_to costume.actor.name, actor_path(costume.actor) %>
+            </li>
         <% end%>
     </ul>
