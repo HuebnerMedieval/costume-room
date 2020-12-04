@@ -1,3 +1,9 @@
 <h1>Create a New Costume!</h1>
 
+<% if @costume.actor_id %>
+
+    <%= link_to 'Back to Actor page', actor_path(@costume.actor) %>
+  
+<% end %>
+
 <%= render 'form' %>
