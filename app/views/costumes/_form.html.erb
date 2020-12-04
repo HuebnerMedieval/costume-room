@@ -17,8 +17,8 @@
     
     <% if !@costume.role || @costume.role == ""%>
 
-        <%= f.label :role %>
-        <%= f.text_field :role %> <br>
+        <p><%= f.label :role %>
+        <%= f.text_field :role %> </p>
 
     <% else %>
 
@@ -27,31 +27,41 @@
     <% end%>
     
 
-    <%= f.label :description %> <br>
-    <%= f.text_area :description %> <br>
+    <p>
+        <%= f.label :description %> <br>
+        <%= f.text_area :description %>
+    </p>
 
-    <%= f.label :finished_WIP, 'Work in Progress' %>
-    <%= f.radio_button :finished, false %> <br>
-    
-    <%= f.label :finished_done, 'Costume Complete' %>
-    <%= f.radio_button :finished, true %> <br>
+    <p>
+        <%= f.label :finished_WIP, 'Work in Progress' %>
+        <%= f.radio_button :finished, false %> <br>
+        
+        <%= f.label :finished_done, 'Costume Complete' %>
+        <%= f.radio_button :finished, true %> <br>
+    </p>
 
-    <%= f.label :authentic_true, 'Historical style' %>
-    <%= f.radio_button :authentic, true %> <br>
+    <p>
+        <%= f.label :authentic_true, 'Historical style' %>
+        <%= f.radio_button :authentic, true %> <br>
 
-    <%= f.label :authentic_false, 'Fantasy Style' %>
-    <%= f.radio_button :authentic, false %> <br>
+        <%= f.label :authentic_false, 'Fantasy Style' %>
+        <%= f.radio_button :authentic, false %> <br>
+    </p>
 
     <% if !@costume.actor_id || @costume.actor_id == ""%>
 
-        <%= f.label :actor_id, 'Select an Actor' %>
-        <%= f.collection_select :actor_id, @actors, :id, :name, include_blank: true %> <br>
+        <p>
+            <%= f.label :actor_id, 'Select an Actor' %>
+            <%= f.collection_select :actor_id, @actors, :id, :name, include_blank: true %> <br>
+        </p>
 
         Or <br>
 
-        <%= f.fields_for :actor, @costume.build_actor do |actor_fields| %>
-            <%=actor_fields.label :name, 'Add an Actor'%>
-            <%= actor_fields.text_field :name %> <br>
+        <p>
+            <%= f.fields_for :actor, @costume.build_actor do |actor_fields| %>
+                <%=actor_fields.label :name, 'Add an Actor'%>
+                <%= actor_fields.text_field :name %> <br>
+        </p>
         <% end %>
 
     <% else%>
