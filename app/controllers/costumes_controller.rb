@@ -43,7 +43,6 @@ class CostumesController < ApplicationController
                 @costume.actor_id = params[:actor_id]
             else
                 @actors = Actor.all
-                @costume.build_actor
             end
         else
             redirect_to root_path
@@ -52,10 +51,11 @@ class CostumesController < ApplicationController
 
     def create
         # binding.pry
-        costume = current_user.costumes.build(costume_params)
-        if costume.save
-            redirect_to costume_path(costume)
+        @costume = current_user.costumes.build(costume_params)
+        if @costume.save
+            redirect_to costume_path(@costume)
         else
+            @actors = Actor.all
             render :new
         end
     end

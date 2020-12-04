@@ -4,6 +4,12 @@ class Costume < ApplicationRecord
 
     accepts_nested_attributes_for :actor
 
+    validates :role, presence: true
+    validates :description, presence: true
+    validates :description, length: { maximum: 200}
+    validates :authentic, presence: true
+    validates :actor_id, presence: true
+
     scope :authentic, -> {where(authentic: true)}
     scope :fantasy, -> {where(authentic: false)}
     scope :finished, -> {where(finished: true)}
