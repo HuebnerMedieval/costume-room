@@ -1,6 +1,6 @@
 <h1><%= @costume.role %></h1>
 
-    <h3>Actor: <%= @costume.actor.name %> </h3>
+    <h3>Actor: <%= link_to @costume.actor.name, actor_path(@costume.actor) %> </h3>
 
     <% if @costume.finished%>
         <h3>Construction Completed</h3>
