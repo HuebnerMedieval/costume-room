@@ -50,7 +50,6 @@ class CostumesController < ApplicationController
     end
 
     def create
-        # binding.pry
         @costume = current_user.costumes.build(costume_params)
         if @costume.save
             redirect_to costume_path(@costume)
