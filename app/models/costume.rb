@@ -7,7 +7,6 @@ class Costume < ApplicationRecord
     validates :role, presence: true
     validates :description, presence: true
     validates :description, length: { maximum: 200}
-    validates :authentic, presence: true
     validates :actor_id, presence: true
 
     scope :authentic, -> {where(authentic: true)}

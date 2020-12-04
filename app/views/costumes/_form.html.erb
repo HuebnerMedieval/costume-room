@@ -14,19 +14,12 @@
 <% end %>
 
 <%= form_for @costume do |f| %>
+
+    <p>
+        <%= f.label :role %>
+        <%= f.text_field :role %>
+    </p>
     
-    <% if !@costume.role || @costume.role == ""%>
-
-        <p><%= f.label :role %>
-        <%= f.text_field :role %> </p>
-
-    <% else %>
-
-        <p>Role: <%= @costume.role %></p>
-
-    <% end%>
-    
-
     <p>
         <%= f.label :description %> <br>
         <%= f.text_area :description %>
@@ -46,6 +39,7 @@
 
         <%= f.label :authentic_false, 'Fantasy Style' %>
         <%= f.radio_button :authentic, false %> <br>
+        No input defaults to Fantasy <br>
     </p>
 
     <% if !@costume.actor_id || @costume.actor_id == ""%>
@@ -67,7 +61,7 @@
     <% else%>
 
         <p>Actor: <%= @costume.actor.name %></p>
-        <%= f.hidden_field :actor %>
+        <%= f.hidden_field :actor_id %>
 
     <% end%>
 
