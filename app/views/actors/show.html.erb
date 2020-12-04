@@ -5,9 +5,7 @@
 
 <ul>
     <li><%= link_to 'New Costume', new_actor_costume_path(@actor) %></li>
-    <% @actor.costumes.each do |costume|%>
-        <% if costume.user == current_user %>
-            <li><%= link_to costume.role, actor_costume_path(@actor.id, costume.id) %></li>
-        <% end %>
+    <% @costumes.each do |costume|%>
+        <li><%= link_to costume.role, actor_costume_path(@actor.id, costume.id) %></li>
     <% end %>
 </ul>
