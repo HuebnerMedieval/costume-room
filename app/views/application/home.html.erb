@@ -1,7 +1,13 @@
-<div>
-    <h1>Hi, <%= @user.name %>, Welcome to Your Costume Room!</h1>
-</div>
+<% if user_signed_in? %>
+    <div>
+        <h1>Hi, <%= @user.name %>, Welcome to Your Costume Room!</h1>
+    </div>
 
-<div>
-    <p>Use the links at the top of the page to navigate the site.</p>
-</div>
+    <div>
+        <p>Use the links at the top of the page to navigate the site.</p>
+    </div>
+<% else %>
+  <div>
+    <h1>Welcome to the Costume Room!</h1>
+  </div>
+<% end %>
