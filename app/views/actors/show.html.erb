@@ -1,11 +1,17 @@
-<h1><%= @actor.name %></h1>
-    <p>Return to <%= link_to "Actors list", actors_path %></p>
+<div>
+    <h1><%= @actor.name %></h1>
+        <p>Return to <%= link_to "Actors list", actors_path %></p>
+</div>
 
-<h3>Costumes</h3>
+<div>
+    <h3>Costumes</h3>
 
-<ul>
-    <li><%= link_to 'New Costume', new_actor_costume_path(@actor) %></li>
-    <% @costumes.each do |costume|%>
-        <li><%= link_to costume.role, actor_costume_path(@actor.id, costume.id) %></li>
-    <% end %>
-</ul>
+    <ul>
+        <li><%= link_to 'Add a new costume', new_actor_costume_path(@actor) %></li>
+        <br>
+        <% @costumes.each do |costume|%>
+            <li><%= link_to costume.role, actor_costume_path(@actor.id, costume.id) %></li>
+        <% end %>
+    </ul>
+
+</div>
