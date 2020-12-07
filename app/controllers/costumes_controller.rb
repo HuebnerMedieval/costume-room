@@ -1,51 +1,40 @@
 class CostumesController < ApplicationController
+    before_action :require_login
 
     def index
-        if user_signed_in?
-            @user_costumes = current_user.costumes
+        @user_costumes = current_user.costumes
 
-            if !params[:authenticity].blank?
-                if params[:authenticity] == "Fantasy"
-                    @costumes = @user_costumes.fantasy
-                else
-                    @costumes = @user_costumes.authentic
-                end
-            elsif !params[:status].blank?
-                if params[:status] == "Work in Progress"
-                    @costumes = @user_costumes.wip
-                else
-                    @costumes = @user_costumes.finished
-                end
+        if !params[:authenticity].blank?
+            if params[:authenticity] == "Fantasy"
+                @costumes = @user_costumes.fantasy
             else
-                @costumes = @user_costumes
+                @costumes = @user_costumes.authentic
+            end
+        elsif !params[:status].blank?
+            if params[:status] == "Work in Progress"
+                @costumes = @user_costumes.wip
+            else
+                @costumes = @user_costumes.finished
             end
         else
-            redirect_to root_path
+            @costumes = @user_costumes
         end
     end
 
     def show
-        if user_signed_in?
-            if current_user.costumes.find_by(id: params[:id])
-                @costume = current_user.costumes.find_by(id: params[:id])
-            else
-                redirect_to costumes_path
-            end
+        if current_user.costumes.find_by(id: params[:id])
+            assign_costume
         else
-            redirect_to root_path
+            redirect_to costumes_path
         end
     end
 
     def new
-        if user_signed_in?
-            @costume = Costume.new
-            if params[:actor_id]
-                @costume.actor_id = params[:actor_id]
-            else
-                @actors = Actor.all
-            end
+        @costume = Costume.new
+        if params[:actor_id]
+            @costume.actor_id = params[:actor_id]
         else
-            redirect_to root_path
+            @actors = Actor.all
         end
     end
 
@@ -60,14 +49,10 @@ class CostumesController < ApplicationController
     end
 
     def edit
-        if user_signed_in?
-            if current_user.costumes.find_by(id: params[:id])
-                @costume = current_user.costumes.find_by(id: params[:id])
-            else
-                redirect_to costumes_path
-            end
+        if current_user.costumes.find_by(id: params[:id])
+            assign_costume
         else
-            redirect_to root_path
+            redirect_to costumes_path
         end
     end
 
@@ -95,4 +80,15 @@ class CostumesController < ApplicationController
     def costume_params
         params.require(:costume).permit(:role, :description, :finished, :authentic, :user_id, :actor_id, actor_attributes: [:name])
     end
+
+    def require_login
+        if?
+            redirect_to root_path
+        end
+    end
+
+    def assign_costume
+        @costume = current_user.costumes.find_by(id: params[:id])
+    end
+
 end

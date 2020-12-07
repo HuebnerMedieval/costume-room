@@ -15,7 +15,12 @@ class ActorsController < ApplicationController
 
     def index
         if user_signed_in?
-            @actors = current_user.actors.uniq
+            
+            if params[:name]
+                @actors = current_user.actors.found(params[:name]).uniq
+            else
+                @actors = current_user.actors.uniq
+            end
         else
             redirect_to root_path
         end

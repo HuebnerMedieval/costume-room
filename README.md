@@ -13,6 +13,8 @@ To install this application, please download a copy at:
 
 Once installed, run bundle install.
 
+Run rake db:migrate
+
 ### Running The Application
 Currently the application only runs locally on localhost
 
