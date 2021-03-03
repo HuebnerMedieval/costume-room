@@ -23,5 +23,4 @@ class Costume < ApplicationRecord
         end
     end
 
-
 end
