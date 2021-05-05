@@ -13,58 +13,62 @@
     </div>
 <% end %>
 
-<%= form_for @costume do |f| %>
+<div id="costume-form">
+    <%= form_for @costume do |f| %>
 
-    <p>
-        <%= f.label :role %>
-        <%= f.text_field :role %>
-    </p>
-    
-    <p>
-        <%= f.label :description %> <br>
-        <%= f.text_area :description %>
-    </p>
-
-    <p>
-        <%= f.label :finished_WIP, 'Work in Progress' %>
-        <%= f.radio_button :finished, false %> <br>
+        <p>
+            <%= f.label :role %>
+            <%= f.text_field :role %>
+        </p>
         
-        <%= f.label :finished_done, 'Costume Complete' %>
-        <%= f.radio_button :finished, true %> <br>
-    </p>
-
-    <p>
-        <%= f.label :authentic_true, 'Historical style' %>
-        <%= f.radio_button :authentic, true %> <br>
-
-        <%= f.label :authentic_false, 'Fantasy Style' %>
-        <%= f.radio_button :authentic, false %> <br>
-        No input defaults to Fantasy <br>
-    </p>
-
-    <% if !@costume.actor_id || @costume.actor_id == ""%>
-
         <p>
-            <%= f.label :actor_id, 'Select an Actor' %>
-            <%= f.collection_select :actor_id, @actors, :id, :name, include_blank: true %> <br>
+            <%= f.label :description %> <br>
+            <%= f.text_area :description %>
         </p>
 
-        Or <br>
+        <p>
+            <%= f.label :finished_WIP, 'Work in Progress' %>
+            <%= f.radio_button :finished, false %> <br>
+            
+            <%= f.label :finished_done, 'Costume Complete' %>
+            <%= f.radio_button :finished, true %> <br>
+        </p>
 
         <p>
-            <%= f.fields_for :actor, @costume.build_actor do |actor_fields| %>
-                <%=actor_fields.label :name, 'Add an Actor'%>
-                <%= actor_fields.text_field :name %> <br>
+            <%= f.label :authentic_true, 'Historical style' %>
+            <%= f.radio_button :authentic, true %> <br>
+
+            <%= f.label :authentic_false, 'Fantasy Style' %>
+            <%= f.radio_button :authentic, false %> <br>
+            No input defaults to Fantasy <br>
         </p>
-        <% end %>
 
-    <% else%>
+        <div id="actor-form">
+            <% if !@costume.actor_id || @costume.actor_id == ""%>
 
-        <p>Actor: <%= @costume.actor.name %></p>
-        <%= f.hidden_field :actor_id %>
+                <p>
+                    <%= f.label :actor_id, 'Select an Actor' %>
+                    <%= f.collection_select :actor_id, @actors, :id, :name, include_blank: true %> <br>
+                </p>
 
-    <% end%>
+                Or <br>
 
-    <%= f.submit %>
+                <p>
+                    <%= f.fields_for :actor, @costume.build_actor do |actor_fields| %>
+                        <%=actor_fields.label :name, 'Add an Actor'%>
+                        <%= actor_fields.text_field :name %> <br>
+                </p>
+                <% end %>
 
-<% end %>
+            <% else%>
+
+                <p>Actor: <%= @costume.actor.name %></p>
+                <%= f.hidden_field :actor_id %>
+
+            <% end%>
+        </div>
+
+        <%= f.submit %>
+
+    <% end %>
+</div>
