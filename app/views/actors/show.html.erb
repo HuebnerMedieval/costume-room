@@ -6,8 +6,8 @@
 <div id="actor-costumes">
     <h3>Costumes</h3>
 
+    <%= link_to 'Add a new costume', new_actor_costume_path(@actor) %>
     <ul>
-        <li><%= link_to 'Add a new costume', new_actor_costume_path(@actor) %></li>
         <br>
         <% @costumes.each do |costume|%>
             <li><%= link_to costume.role, actor_costume_path(@actor.id, costume.id) %></li>
