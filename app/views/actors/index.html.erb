@@ -1,12 +1,18 @@
-<h1><%= current_user.name %>'s actors</h1>
+<div class="view-header">
+  <h1><%= current_user.name %>'s actors</h1>
+</div>
 
-<%= form_tag("/actors", method: "get") do %>
-  Search by name: <%= text_field_tag 'name' %>
-  <%= submit_tag "Search" %>
-<% end %>
+<div id="actor-search-form">
+  <%= form_tag("/actors", method: "get") do %>
+    Search by name: <%= text_field_tag 'name' %>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
 
-<ul>
-    <% @actors.each do |actor| %>
-        <li><%= link_to actor.name, actor_path(actor) %></li>
-    <% end%>
-</ul>
+<div id="actor-list">
+  <ul>
+      <% @actors.each do |actor| %>
+          <li><%= link_to actor.name, actor_path(actor) %></li>
+      <% end%>
+  </ul>
+</div>
