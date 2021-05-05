@@ -1,9 +1,13 @@
-<h1>Create a New Costume!</h1>
+<div class="view-header">
+    <h1>Create a New Costume!</h1>
+</div>
 
-<% if @costume.actor_id %>
+<div id="actor-link">
+    <% if @costume.actor_id %>
 
-    <%= link_to 'Back to Actor page', actor_path(@costume.actor) %>
-  
-<% end %>
+        <%= link_to 'Back to Actor page', actor_path(@costume.actor) %>
+    
+    <% end %>
+</div>
 
 <%= render 'form' %>
