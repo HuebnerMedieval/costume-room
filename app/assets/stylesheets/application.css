@@ -27,10 +27,11 @@
     width: 200px;
     float: left;
     height: 100%;
+    padding-top: 175px;
  }
 
  #home{
      background: darkcyan;
      padding: 25px 0px;
-     
+
  }
